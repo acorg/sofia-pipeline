@@ -1,0 +1,12 @@
+*.fastq.gz
+01-trim/*.discarded.gz
+01-trim/*.settings
+01-trim/*.fastq.gz
+01-trim/slurm-*.out
+02-map/*.out
+02-map/*.bam
+03-find-unmapped/*.fastq.gz
+03-find-unmapped/*.out
+04-diamond/*.json.bz2
+04-diamond/*.out
+05-panel/out

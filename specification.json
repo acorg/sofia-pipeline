@@ -1,0 +1,46 @@
+{
+    "steps": [
+        {
+            "cwd": "00-start",
+            "name": "start",
+            "script": "00-start/start.sh"
+        },
+        {
+            "cwd": "01-trim",
+            "dependencies": ["start"],
+            "name": "trim",
+            "script": "01-trim/sbatch.sh"
+        },
+        {
+            "cwd": "02-map",
+            "dependencies": ["trim"],
+            "name": "map",
+            "script": "02-map/sbatch.sh"
+        },
+        {
+            "cwd": "03-find-unmapped",
+            "dependencies": ["map"],
+            "name": "unmapped",
+            "script": "03-find-unmapped/sbatch.sh"
+        },
+        {
+            "cwd": "04-diamond",
+            "dependencies": ["unmapped"],
+            "name": "diamond",
+            "script": "04-diamond/sbatch.sh"
+        },
+        {
+            "collect": true,
+            "cwd": "05-panel",
+            "dependencies": ["diamond"],
+            "name": "panel",
+            "script": "05-panel/sbatch.sh"
+        },
+        {
+            "cwd": "06-stop",
+            "dependencies": ["panel"],
+            "name": "stop",
+            "script": "06-stop/sbatch.sh"
+        }
+    ]
+}
