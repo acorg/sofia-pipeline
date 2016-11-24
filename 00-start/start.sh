@@ -8,6 +8,7 @@ log=../slurm-pipeline.log
 rm -f ../slurm-pipeline.done
 
 echo "SLURM pipeline started at `date`" >> $log
+
 echo >> $log
 echo "00-start on task $task started at `date`" >> $log
 
@@ -29,9 +30,9 @@ case ${#fastq[*]} in
     *) echo "  Unexpected FASTQ file list: ${fastq[*]}" >> $log; exit 1;;
 esac
 
-expectedSecond=`echo $fastq[0] | sed -e s/_R1_/_R2_/`
+expectedSecond=`echo ${fastq[0]} | sed -e s/_R1_/_R2_/`
 
-if [ $fastq[1] != $expectedSecond ]
+if [ ${fastq[1]} != $expectedSecond ]
 then
     echo "  Second FASTQ file name '${fastq[1]}' does not match expected name ($expectedSecond)" >> $log
     exit 1
@@ -40,8 +41,7 @@ fi
 # The task name is the common prefix of the FASTQ file names, up to the R1.
 task=`echo $fastq[0] | sed -e s/_R1_.*//`
 
-echo >> $log
-echo "  FASTQ files $fastq[*]" >> $log
+echo "  FASTQ files: ${fastq[*]}" >> $log
 echo "  task name $task" >> $log
 
 # Emit task name (without job ids as this step does not start any

@@ -18,12 +18,25 @@ log=../$task.log
 
 function run_flash()
 {
-    echo "  Flash started at `date`" >> $log
-    srun -n 1 flash $fastq1 $fastq2
+    # FLASH will print a warning such as:
+    #
+    #   [FLASH] WARNING: An unexpectedly high proportion of combined pairs
+    #   (30.25%) overlapped by more than 65 bp, the --max-overlap (-M)
+    #   parameter.  Consider increasing this parameter.  (As-is, FLASH is
+    #   penalizing overlaps longer than 65 bp when considering them for
+    #   possible combining!)
+    #
+    # It's not clear what to do about this (if anything) because our reads
+    # are not of a (nearly) constant length. So passing a fixed value to
+    # --max-overlap doesn't help. E.g., we can pass 99 and still get the
+    # error.
+
+    echo "  FLASH started at `date`" >> $log
+    srun -n 1 flash --compress --threads 1 $fastq1 $fastq2
     mv out.notCombined_1.fastq.gz $out1
     mv out.notCombined_2.fastq.gz $out2
     mv out.extendedFrags.fastq.gz $outMerged
-    echo "  Flash stopped at `date`" >> $log
+    echo "  FLASH stopped at `date`" >> $log
 }
 
 

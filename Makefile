@@ -13,6 +13,7 @@ clean-1:
               01-trim/*.discarded.gz \
               01-trim/*.settings \
               01-trim/*.fastq.gz \
+              01-trim/*.truncated.gz \
               02-flash/*.fastq.gz \
               03-map/*.bam \
               04-find-unmapped/*.fastq.gz \

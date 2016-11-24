@@ -62,13 +62,13 @@ then
         if [ $SP_FORCE = "1" ]
         then
             echo "  Pre-existing output files $outPairs and $outMerged exist, but --force was used. Overwriting." >> $log
-            run_flash
+            map
         else
             echo "  Will not overwrite pre-existing output files $outPairs and $outMerged. Use --force to make me." >> $log
         fi
     else
         echo "  Pre-existing output files $outPairs and $outMerged do not both exist. Mapping." >> $log
-        run_flash
+        map
     fi
 else
     echo "  This is a simulation." >> $log
