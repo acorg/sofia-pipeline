@@ -4,10 +4,10 @@
 
 task=$1
 log=../$task.log
-fastq=../03-find-unmapped/$task-unmapped.fastq.gz
+fastq=../04-find-unmapped/$task-unmapped.fastq.gz
 out=$task.json.bz2
 
-echo "04-diamond on task $task started at `date`" >> $log
+echo "05-diamond on task $task started at `date`" >> $log
 echo "  fastq file is $fastq" >> $log
 
 
@@ -53,5 +53,5 @@ else
     echo "  This is a simulation." >> $log
 fi
 
-echo "04-diamond on task $task stopped at `date`" >> $log
+echo "05-diamond on task $task stopped at `date`" >> $log
 echo >> $log

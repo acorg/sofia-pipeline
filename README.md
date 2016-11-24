@@ -14,6 +14,17 @@ $ cp /your/data/*.fastq.gz .
 $ make run
 ```
 
+## Pipeline steps
+
+    00-start
+    01-trim
+    02-flash
+    03-map
+    04-find-unmapped
+    05-diamond
+    06-panel
+    07-stop
+
 ### Output
 
 The scripts in `01-trim`, `02-map`, etc. are all submitted by `sbatch` for

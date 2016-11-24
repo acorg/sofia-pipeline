@@ -3,7 +3,7 @@
 task=$1
 log=../$task.log
 
-echo "04-diamond sbatch.sh running at `date`" >> $log
+echo "05-diamond sbatch.sh running at `date`" >> $log
 echo "task is $task" >> $log
 echo "dependencies are $SP_DEPENDENCY_ARG" >> $log
 echo >> $log

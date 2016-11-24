@@ -14,15 +14,15 @@ log=../slurm-pipeline.log
 outputDir=out
 out=$outputDir/index.html
 
-echo "05-panel started at `date`" >> $log
+echo "06-panel started at `date`" >> $log
 
 json=
 fastq=
 for task in "$@"
 do
     echo "  task $task" >> $log
-    json="$json ../04-diamond/$task.json.bz2"
-    fastq="$fastq ../03-find-unmapped/$task-unmapped.fastq.gz"
+    json="$json ../05-diamond/$task.json.bz2"
+    fastq="$fastq ../04-find-unmapped/$task-unmapped.fastq.gz"
 done
 
 dbfile=$HOME/scratch/root/share/ncbi/viral-refseq/viral-protein-OKIAV.dmnd
@@ -75,5 +75,5 @@ else
     echo "  This is a simulation." >> $log
 fi
 
-echo "05-panel stopped at `date`" >> $log
+echo "06-panel stopped at `date`" >> $log
 echo >> $log

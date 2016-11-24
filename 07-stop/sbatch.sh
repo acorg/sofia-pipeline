@@ -2,7 +2,7 @@
 
 log=../slurm-pipeline.log
 
-echo "06-stop sbatch.sh running at `date`" >> $log
+echo "07-stop sbatch.sh running at `date`" >> $log
 echo "  dependencies are $SP_DEPENDENCY_ARG" >> $log
 for task in "$@"
 do

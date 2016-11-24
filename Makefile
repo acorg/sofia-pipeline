@@ -1,4 +1,4 @@
-.PHONY: x, run, clean-1, clean-2, clean-3, clean-ftp
+.PHONY: x, run, clean-1, clean-2, clean-3
 
 x:
 	@echo "There is no default make target. Use 'make run' to run the SLURM pipeline."
@@ -13,35 +13,30 @@ clean-1:
               01-trim/*.discarded.gz \
               01-trim/*.settings \
               01-trim/*.fastq.gz \
-              02-map/*.bam \
-              03-find-unmapped/*.fastq.gz \
-              04-diamond/*.json.bz2
+              02-flash/*.fastq.gz \
+              03-map/*.bam \
+              04-find-unmapped/*.fastq.gz \
+              05-diamond/*.json.bz2
 
 # Remove even more intermediate files.
 clean-2: clean-1
 	rm -f \
               01-trim/*.out \
-              02-map/*.out \
-              03-find-unmapped/*.out \
-              04-diamond/*.out \
-              05-panel/*.out \
-              06-stop/*.out
+              02-flash/out.* \
+              02-flash/*.out \
+              03-map/*.out \
+              04-find-unmapped/*.out \
+              05-diamond/*.out \
+              06-panel/*.out \
+              07-stop/*.out
 
-# Remove *all* intermediates, including the final panel output.
+# Remove all products, including the final panel output.
 clean-3: clean-2
 	rm -fr \
-               05-panel/out \
-               05-panel/summary-proteins \
-               05-panel/summary-virus \
+               06-panel/out \
+               06-panel/summary-proteins \
+               06-panel/summary-virus \
                slurm-pipeline.log \
                slurm-pipeline.done \
                *.log \
                status.json
-
-# Remove unneeded files that we get from ftp.
-clean-ftp:
-	rm -fr \
-               *_fastqc \
-               *_fastqc.zip \
-               SampleSheet.csv \
-               .listing \

@@ -3,7 +3,7 @@
 task=$1
 log=../$task.log
 
-echo "02-map sbatch.sh running at `date`" >> $log
+echo "03-map sbatch.sh running at `date`" >> $log
 echo "task is $task" >> $log
 echo "dependencies are $SP_DEPENDENCY_ARG" >> $log
 echo >> $log

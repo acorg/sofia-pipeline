@@ -12,35 +12,41 @@
             "script": "01-trim/sbatch.sh"
         },
         {
-            "cwd": "02-map",
+            "cwd": "02-flash",
             "dependencies": ["trim"],
-            "name": "map",
-            "script": "02-map/sbatch.sh"
+            "name": "flash",
+            "script": "02-flash/sbatch.sh"
         },
         {
-            "cwd": "03-find-unmapped",
+            "cwd": "03-map",
+            "dependencies": ["flash"],
+            "name": "map",
+            "script": "03-map/sbatch.sh"
+        },
+        {
+            "cwd": "04-find-unmapped",
             "dependencies": ["map"],
             "name": "unmapped",
-            "script": "03-find-unmapped/sbatch.sh"
+            "script": "04-find-unmapped/sbatch.sh"
         },
         {
-            "cwd": "04-diamond",
+            "cwd": "05-diamond",
             "dependencies": ["unmapped"],
             "name": "diamond",
-            "script": "04-diamond/sbatch.sh"
+            "script": "05-diamond/sbatch.sh"
         },
         {
             "collect": true,
-            "cwd": "05-panel",
+            "cwd": "06-panel",
             "dependencies": ["diamond"],
             "name": "panel",
-            "script": "05-panel/sbatch.sh"
+            "script": "06-panel/sbatch.sh"
         },
         {
-            "cwd": "06-stop",
+            "cwd": "07-stop",
             "dependencies": ["panel"],
             "name": "stop",
-            "script": "06-stop/sbatch.sh"
+            "script": "07-stop/sbatch.sh"
         }
     ]
 }
