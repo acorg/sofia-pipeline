@@ -7,10 +7,24 @@ sequencing reads from Sofia P.
 
 ### Usage
 
+The scripts assume they can find their input FASTQ files in
+`../../../../SAMPLE-NAME` where `SAMPLE-NAME` is something like
+`141110-79`. So you should have a directory structure that looks like:
+
+    drwxr-xr-x  2 tcj25 tcj25 4096 Nov 24 22:20 140715-12
+    drwxr-xr-x  2 tcj25 tcj25 4096 Nov 24 22:20 140715-24
+    drwxr-xr-x 10 tcj25 tcj25 4096 Nov 24 22:44 pipelines/initial/140715-12
+    drwxr-xr-x 10 tcj25 tcj25 4096 Nov 24 22:23 pipelines/initial/140715-24
+
+Working from the top level of this structure, to add and process a new
+sample, `141110-79` you'd do this:
+
 ```sh
-$ git clone https://github.com/acorg/sofia-pipeline sample-dir
-$ cd sample-dir
-$ cp /your/data/*.fastq.gz .
+$ mkdir 141110-79
+$ cp 1.fastq.gz 2.fastq.gz 141110-79  # Or whatever your two paired end reads are.
+$ mkdir -p pipelines/initial/141110-79
+$ cd pipelines/initial/141110-79
+$ git clone https://github.com/acorg/sofia-pipeline .
 $ make run
 ```
 
@@ -27,9 +41,9 @@ $ make run
 
 ### Output
 
-The scripts in `01-trim`, `02-map`, etc. are all submitted by `sbatch` for
+The scripts in `01-trim`, `02-flash`, etc. are all submitted by `sbatch` for
 execution under [SLURM](http://slurm.schedmd.com/). The final step,
-`05-panel` leaves its output in `05-panel/out`.
+`06-panel` leaves its output in `06-panel/out`.
 
 ### Cleaning up
 
