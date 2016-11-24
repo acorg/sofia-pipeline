@@ -14,7 +14,7 @@ echo "00-start started at `date`" >> $log
 
 # Assume our data is in a directory with the same basename as ours, but up
 # 4 directories.
-dataDir=../../../../$(basename $(/bin/pwd))
+dataDir=../../../../$(basename $(dirname $(/bin/pwd)))
 
 if [ ! -d $dataDir ]
 then
