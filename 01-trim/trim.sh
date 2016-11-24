@@ -9,8 +9,14 @@
 . /home/tcj25/.virtualenvs/35/bin/activate
 
 task=$1
-fastq1=../${task}_R1_001.fastq.gz
-fastq2=../${task}_R2_001.fastq.gz
+
+# Our data is in a directory with the same basename as ours, but up 4
+# directories. The existence of this directory has been checked in
+# 00-start/start.sh
+dataDir=../../../../$(basename $(/bin/pwd))
+
+fastq1=$dataDir/${task}_R1_001.fastq.gz
+fastq2=$dataDir/${task}_R2_001.fastq.gz
 out1=${task}_R1_001-trimmed.fastq.gz
 out2=${task}_R2_001-trimmed.fastq.gz
 log=../$task.log

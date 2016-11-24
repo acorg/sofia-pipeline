@@ -12,8 +12,18 @@ echo "SLURM pipeline started at `date`" >> $log
 echo >> $log
 echo "00-start started at `date`" >> $log
 
+# Assume our data is in a directory with the same basename as ours, but up
+# 4 directories.
+dataDir=../../../../$(basename $(/bin/pwd))
+
+if [ ! -d $dataDir ]
+then
+    echo "  Data directory '$dataDir' does not exist!" >> $log
+    exit 1
+fi
+
 #
-# Make sure there are only 2 FASTQ files in the current directory, and that
+# Make sure there are only 2 FASTQ files in the data directory, and that
 # their names form a pair in the expected way (R1 and R2 must be the only
 # difference in the names). E.g.:
 #
@@ -22,7 +32,7 @@ echo "00-start started at `date`" >> $log
 #
 
 IFS=$'\n'
-fastq=($(ls ../*.fastq.gz | cut -c4- | cut -f1 -d.))
+fastq=($(ls $dataDir/*.fastq.gz | sed -e 's:.*/::' | cut -f1 -d.))
 unset IFS
 
 case ${#fastq[*]} in
