@@ -25,11 +25,11 @@ do
     fastq="$fastq ../04-find-unmapped/$task-unmapped.fastq.gz"
 done
 
-dbfile=$HOME/scratch/root/share/ncbi/viral-refseq/viral-protein-OKIAV.dmnd
+dbfile=$HOME/scratch/root/share/ncbi/diamond-dbs/viral-protein-OKIAV-ECH.dmnd
 
 if [ ! -f $dbfile ]
 then
-    echo "DIAMOND database FASTA file $dbfile does not exist!" >> $log
+    echo "  DIAMOND database FASTA file $dbfile does not exist!" >> $log
     exit 1
 fi
 

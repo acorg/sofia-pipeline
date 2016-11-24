@@ -10,7 +10,7 @@ rm -f ../slurm-pipeline.done
 echo "SLURM pipeline started at `date`" >> $log
 
 echo >> $log
-echo "00-start on task $task started at `date`" >> $log
+echo "00-start started at `date`" >> $log
 
 #
 # Make sure there are only 2 FASTQ files in the current directory, and that

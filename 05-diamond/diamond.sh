@@ -11,11 +11,11 @@ echo "05-diamond on task $task started at `date`" >> $log
 echo "  fastq file is $fastq" >> $log
 
 
-dbfile=$HOME/scratch/root/share/ncbi/diamond-dbs/viral-protein-OKIAV.dmnd
+dbfile=$HOME/scratch/root/share/ncbi/diamond-dbs/viral-protein-OKIAV-ECH.dmnd
 
 if [ ! -f $dbfile ]
 then
-    echo "DIAMOND database file $dbfile does not exist!" >> $log
+    echo "  DIAMOND database file $dbfile does not exist!" >> $log
     exit 1
 fi
 

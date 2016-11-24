@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-#SBATCH -J trim
+#SBATCH -J flash
 #SBATCH -A DSMITH-BIOCLOUD
 #SBATCH -o slurm-%A.out
 #SBATCH -p biocloud-normal
