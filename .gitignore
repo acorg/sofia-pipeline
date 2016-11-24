@@ -1,10 +1,11 @@
 *.fastq.gz
+*/slurm-*.out
 01-trim/*.discarded.gz
 01-trim/*.settings
 01-trim/*.fastq.gz
+01-trim/*.truncated.gz
 02-flash/out.*
 02-flash/*.out
-01-trim/slurm-*.out
 03-map/*.out
 03-map/*.bam
 04-find-unmapped/*.fastq.gz
@@ -12,3 +13,5 @@
 05-diamond/*.json.bz2
 05-diamond/*.out
 06-panel/out
+06-panel/summary-proteins
+06-panel/summary-viruses
