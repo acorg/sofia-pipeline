@@ -25,7 +25,7 @@ do
     fastq="$fastq ../04-find-unmapped/$task-unmapped.fastq.gz"
 done
 
-dbfile=$HOME/scratch/root/share/ncbi/diamond-dbs/viral-protein-OKIAV-ECH.dmnd
+dbFASTAFile=$HOME/scratch/root/share/ncbi/diamond-dbs/viral-protein-OKIAV-ECH.fasta
 
 if [ ! -f $dbfile ]
 then
@@ -47,7 +47,7 @@ function panel()
       --minMatchingReads 3 \
       --minCoverage 0.1 \
       --negativeTitleRegex phage \
-      --diamondDatabaseFastaFilename $dbfile > summary-proteins
+      --diamondDatabaseFastaFilename $dbFASTAFile > summary-proteins
     echo "  noninteractive-alignment-panel.py stopped at `date`" >> $log
 
     echo "  proteins-to-viruses.py started at `date`" >> $log
