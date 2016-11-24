@@ -20,13 +20,17 @@ mappedCount = unmappedCount = 0
 
 for read in samfile:
     if read.is_unmapped:
+        if read.is_paired:
+            readId = read.query_name + ('/1' if read.is_read1 else '/2')
+        else:
+            readId = read.query_name
         unmappedCount += 1
         quality = bytes(map(lambda x: x + 33,
                             read.query_qualities)).decode('utf-8')
         # Note that printing the query name a second time (after the '+')
         # is optional in FASTQ. Unfortunately, some tools require it.
-        print('@%s\n%s\n+%s\n%s' % (read.query_name, read.query_sequence,
-              read.query_name, quality))
+        print('@%s\n%s\n+%s\n%s' % (readId, read.query_sequence,
+                                    readId, quality))
     else:
         mappedCount += 1
 

@@ -52,7 +52,9 @@ function map()
 
 
 echo "03-map on task $task started at `date`" >> $log
-echo "  fastq is $fastq" >> $log
+echo "  fastq1 is $fastq1" >> $log
+echo "  fastq2 is $fastq2" >> $log
+echo "  merged is $fastqMerged" >> $log
 
 if [ $SP_SIMULATE = "0" ]
 then
