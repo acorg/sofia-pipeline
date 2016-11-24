@@ -25,7 +25,7 @@ do
     fastq="$fastq ../03-find-unmapped/$task-unmapped.fastq.gz"
 done
 
-dbfile=$HOME/scratch/root/share/ncbi/viral-refseq/viral.protein.fasta
+dbfile=$HOME/scratch/root/share/ncbi/viral-refseq/viral-protein-OKIAV.dmnd
 
 if [ ! -f $dbfile ]
 then
