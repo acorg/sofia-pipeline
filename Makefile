@@ -34,10 +34,10 @@ clean-2: clean-1
 # Remove all products, including the final panel output.
 clean-3: clean-2
 	rm -fr \
-               06-panel/out \
-               06-panel/summary-proteins \
-               06-panel/summary-virus \
-               slurm-pipeline.log \
-               slurm-pipeline.done \
-               *.log \
-               status.json
+              06-panel/out \
+              06-panel/summary-proteins \
+              06-panel/summary-virus \
+              slurm-pipeline.log \
+              slurm-pipeline.done \
+              *.log \
+              status.json
