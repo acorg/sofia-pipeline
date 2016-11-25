@@ -65,7 +65,7 @@ function get_genome()
 function map()
 {
     genome=`get_genome`
-    echo "  Genome base name is '$genome'."
+    echo "  Genome base name is '$genome'." >> $log
 
     # Map paired FASTQ to human genome, save to ramdisk SAM file.
     echo "  bwa mem on pairs started at `date`" >> $log
