@@ -36,8 +36,8 @@ function run_flash()
     mv out.notCombined_1.fastq.gz $out1
     mv out.notCombined_2.fastq.gz $out2
     mv out.extendedFrags.fastq.gz $outMerged
-    echo "  Sleeping 30 seconds to give the filesystem a chance to settle." >> $log
-    sleep 30
+    echo "  Sleeping 5 seconds to give the filesystem a chance to settle." >> $log
+    sleep 5
     echo "  FLASH stopped at `date`" >> $log
 }
 
