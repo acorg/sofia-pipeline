@@ -97,7 +97,7 @@ function map()
     samtools sort --threads 24 -o $outMerged $bamtmp
     echo "  bam sort on (flash) merged stopped at `date`" >> $log
 
-    echo "  Sleeping 30 seconds to give the filesystem a chance to settle."
+    echo "  Sleeping 30 seconds to give the filesystem a chance to settle." >> $log
     sleep 30
 }
 

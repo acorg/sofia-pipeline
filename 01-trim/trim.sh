@@ -35,7 +35,7 @@ function trim()
       --trimns \
       --trimqualities
 
-    echo "  Sleeping 30 seconds to give the filesystem a chance to settle."
+    echo "  Sleeping 30 seconds to give the filesystem a chance to settle." >> $log
     sleep 30
     echo "  AdapterRemoval stopped at `date`" >> $log
 }

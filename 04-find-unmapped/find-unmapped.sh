@@ -20,7 +20,7 @@ function unmapped()
     print-unmapped-sam.py $bamMerged | gzip >> $out
     echo "  print-unmapped-sam.py stopped on $bamMerged at `date`" >> $log
 
-    echo "  Sleeping 30 seconds to give the filesystem a chance to settle."
+    echo "  Sleeping 30 seconds to give the filesystem a chance to settle." >> $log
     sleep 30
 }
 

@@ -30,7 +30,7 @@ function run_diamond()
         --outfmt 6 qtitle stitle bitscore evalue qframe qseq qstart qend sseq sstart send slen btop |
     convert-diamond-to-json.py | bzip2 > $out
 
-    echo "  Sleeping 30 seconds to give the filesystem a chance to settle."
+    echo "  Sleeping 30 seconds to give the filesystem a chance to settle." >> $log
     sleep 30
 
     echo "  DIAMOND blastx stopped at `date`" >> $log

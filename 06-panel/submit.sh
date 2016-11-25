@@ -52,7 +52,7 @@ function panel()
     echo summary-proteins | proteins-to-viruses.py > summary-virus
     echo "  proteins-to-viruses.py stopped at `date`" >> $log
 
-    echo "  Sleeping 30 seconds to give the filesystem a chance to settle."
+    echo "  Sleeping 30 seconds to give the filesystem a chance to settle." >> $log
     sleep 30
 }
 
