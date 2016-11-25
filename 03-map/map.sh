@@ -3,6 +3,7 @@
 . /home/tcj25/.virtualenvs/35/bin/activate
 
 task=$1
+log=../$task.log
 
 fastq1=../02-flash/${task}_R1_001-flash.fastq.gz
 fastq2=../02-flash/${task}_R2_001-flash.fastq.gz
@@ -11,17 +12,57 @@ fastqMerged=../02-flash/${task}-merged-flash.fastq.gz
 outPairs=$task-paired.bam
 outMerged=$task-merged.bam
 
-bamtmp=/ramdisks/terry-$task.bam
-sam=/ramdisks/terry-$task.sam
+if [ -w /ramdisks ]
+then
+    tmp=/ramdisks
+else
+    tmp=/tmp
+fi
 
-bwadb=$HOME/scratch/homo-sapiens/homo-sapiens
-log=../$task.log
+bamtmp=$tmp/terry-$task.bam
+sam=$tmp/terry-$task.sam
+
+function get_genome()
+{
+    sample=$(basename $(dirname $(/bin/pwd)))
+    sample_to_genome='../../../../sample-to-genome'
+
+    if [ ! -f $sample_to_genome ]
+    then
+        echo "  Sample to genome mapping file '$sample_to_genome' does not exist." >> $log
+        exit 1
+    fi
+
+    genome=$(egrep "^$sample " $sample_to_genome | awk '{print $2}')
+    genomeDir=$HOME/scratch/genomes/$genome
+
+    if [ ! -d $genomeDir ]
+    then
+        echo "  Genome directory '$genomeDir' does not exist." >> $log
+        exit 1
+    fi
+
+    # BWA takes the basename of the index.
+    genomeForBWA=$HOME/scratch/$genome/$genome
+
+    # Make sure at least one of the actual BWA index files exists.
+    if [ ! -f $genomeForBWA.amb ]
+    then
+        echo "  Genome index file '$genomeForBWA.amb' does not exist." >> $log
+        exit 1
+    fi
+
+    return $genomeForBWA
+}
 
 function map()
 {
+    genome=`get_genome`
+    echo "  Genome base name is '$genome'."
+
     # Map paired FASTQ to human genome, save to ramdisk SAM file.
     echo "  bwa mem on pairs started at `date`" >> $log
-    bwa mem -t 24 $bwadb $fastq1 $fastq2 > $sam
+    bwa mem -t 24 $genome $fastq1 $fastq2 > $sam
     echo "  bwa mem on pairs stopped at `date`" >> $log
 
     # Convert SAM to BAM, on ramdisk.
@@ -36,7 +77,7 @@ function map()
 
     # Map (flash) merged to human genome, save to ramdisk SAM file.
     echo "  bwa mem on (flash) merged started at `date`" >> $log
-    bwa mem -t 24 $bwadb $fastqMerged > $sam
+    bwa mem -t 24 $genome $fastqMerged > $sam
     echo "  bwa mem on (flash) merged stopped at `date`" >> $log
 
     # Convert SAM to BAM, on ramdisk.
