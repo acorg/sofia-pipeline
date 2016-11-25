@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-log=../slurm-pipeline.log
+log=../sbatch.log
 
 echo "07-stop sbatch.sh running at `date`" >> $log
 echo "  dependencies are $SP_DEPENDENCY_ARG" >> $log

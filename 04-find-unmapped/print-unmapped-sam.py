@@ -45,7 +45,9 @@ for read in samfile:
 
 samfile.close()
 
+total = mappedCount + unmappedCount
+
 print('Read %d reads in total. %d (%.2f%%) mapped, %d unmapped.' % (
-    mappedCount + unmappedCount,
-    mappedCount, mappedCount / (mappedCount + unmappedCount) * 100.0,
+    total, mappedCount,
+    (mappedCount / total * 100.0) if total else 0.0,
     unmappedCount), file=sys.stderr)

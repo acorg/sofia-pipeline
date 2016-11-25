@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 task=$1
-log=../slurm-pipeline.log
+log=../sbatch.log
 
 echo "04-find-unmapped sbatch.sh running at `date`" >> $log
 echo "task is $task" >> $log
