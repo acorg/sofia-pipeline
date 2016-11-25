@@ -3,7 +3,7 @@
 This repo contains a
 [slurm-pipeline](https://github.com/acorg/slurm-pipeline) specification
 file (`specification.json`) and associated scripts for processing
-sequencing reads from Sofia P.
+sequencing reads from Sofia.
 
 ## Usage
 
