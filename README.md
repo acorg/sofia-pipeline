@@ -49,14 +49,14 @@ $ make run
 
 ## Pipeline steps
 
-    00-start
-    01-trim
-    02-flash
-    03-map
-    04-find-unmapped
-    05-diamond
-    06-panel
-    07-stop
+* `00-start`: Logging. Find input FASTQ files, check their number and name.
+* `01-trim`: Trim reads for quality, length (20), and leading/trailing `N` bases.
+* `02-flash`: Merge paired reads, where possible.
+* `03-map`: Map reads to the human genome.
+* `04-find-unmapped`: Extract reads that did not map to the human genome.
+* `05-diamond`: Map the non-human reads to a viral protein database.
+* `06-panel`: Make a [dark matter](https://github.com/acorg/dark-matter/) panel of blue plots.
+* `07-stop`: Logging. Create `slurm-pipeline.done` in top-level dir.
 
 The scripts in `00-start` and `01-trim` assume they can find their
 input FASTQ files in `../../../../SAMPLE-NAME` where `SAMPLE-NAME` is
@@ -64,7 +64,18 @@ something like `141110-79` (as in the above directory hierarchy).
 
 ## Output
 
-The final step, `06-panel` leaves its output in `06-panel/out`.
+The final step, `06-panel` leaves its output in `06-panel/out`. You can
+open `06-panel/out/index.html` in your browser.
+
+You can also run
+
+```sh
+$ cd pipelines/initial
+$ find . -name summary-protein | proteins-to-viruses.py --html > viruses.html
+```
+
+and look in `viruses.html` for an overview of viruses and their proteins
+found in all sample files.
 
 ### Logging
 
