@@ -7,7 +7,7 @@ run:
 	slurm-pipeline.py -s specification.json > status.json
 
 install:
-	git clone https://github.com/acorg/sofia-pipeline.git
+	git clone https://github.com/acorg/sofia-pipeline.git .
 
 update:
 	git pull origin master
