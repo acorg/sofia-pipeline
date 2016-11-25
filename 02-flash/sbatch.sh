@@ -9,5 +9,5 @@ echo "task is $task" >> $log
 echo "dependencies are $SP_DEPENDENCY_ARG" >> $log
 echo >> $log
 
-jobid=`sbatch -n 1 flash.sh $task | cut -f4 -d' '`
+jobid=`sbatch -n 1 $SP_DEPENDENCY_ARG flash.sh $task | cut -f4 -d' '`
 echo "TASK: $task $jobid"
