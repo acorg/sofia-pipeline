@@ -20,6 +20,9 @@ function unmapped()
     echo "  print-unmapped-sam.py started on $bamMerged at `date`" >> $log
     print-unmapped-sam.py $bamMerged | gzip >> $out
     echo "  print-unmapped-sam.py stopped on $bamMerged at `date`" >> $log
+
+    echo "  Sleeping 30 seconds to give the filesystem a chance to settle."
+    sleep 30
 }
 
 echo "04-find-unmapped on task $task started at `date`" >> $log

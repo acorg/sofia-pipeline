@@ -53,6 +53,9 @@ function panel()
     echo "  proteins-to-viruses.py started at `date`" >> $log
     echo summary-proteins | proteins-to-viruses.py > summary-virus
     echo "  proteins-to-viruses.py stopped at `date`" >> $log
+
+    echo "  Sleeping 30 seconds to give the filesystem a chance to settle."
+    sleep 30
 }
 
 if [ $SP_SIMULATE = "0" ]
