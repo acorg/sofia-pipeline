@@ -50,7 +50,7 @@ function get_genome()
     fi
 
     # BWA takes the basename of the index.
-    genomeForBWA=$HOME/scratch/$genome/$genome
+    genomeForBWA=$genomeDir/$genome
 
     # Make sure at least one of the actual BWA index files exists.
     if [ ! -f $genomeForBWA.amb ]
@@ -59,7 +59,7 @@ function get_genome()
         exit 1
     fi
 
-    return $genomeForBWA
+    echo $genomeForBWA
 }
 
 function map()
