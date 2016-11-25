@@ -6,12 +6,6 @@ x:
 run:
 	slurm-pipeline.py -s specification.json > status.json
 
-install:
-	git clone https://github.com/acorg/sofia-pipeline.git .
-
-update:
-	git pull origin master
-
 # Remove all large intermediate files. Only run this if you're sure you
 # want to throw away all that work!
 clean-1:
