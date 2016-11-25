@@ -3,7 +3,7 @@
 . /home/tcj25/.virtualenvs/35/bin/activate
 
 task=$1
-log=../$task.log
+log=../slurm-pipeline.log
 
 fastq1=../02-flash/${task}_R1_001-flash.fastq.gz
 fastq2=../02-flash/${task}_R2_001-flash.fastq.gz

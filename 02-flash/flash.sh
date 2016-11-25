@@ -9,12 +9,12 @@
 . /home/tcj25/.virtualenvs/35/bin/activate
 
 task=$1
+log=../slurm-pipeline.log
 fastq1=../01-trim/${task}_R1_001-trimmed.fastq.gz
 fastq2=../01-trim/${task}_R2_001-trimmed.fastq.gz
 out1=${task}_R1_001-flash.fastq.gz
 out2=${task}_R2_001-flash.fastq.gz
 outMerged=${task}-merged-flash.fastq.gz
-log=../$task.log
 
 function run_flash()
 {

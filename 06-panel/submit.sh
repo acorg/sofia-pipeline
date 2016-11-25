@@ -8,8 +8,6 @@
 
 . /home/tcj25/.virtualenvs/35/bin/activate
 
-# The log file is the overall top-level job log file, seeing as this step
-# is a 'collect' step that is only run once.
 log=../slurm-pipeline.log
 outputDir=out
 out=$outputDir/index.html

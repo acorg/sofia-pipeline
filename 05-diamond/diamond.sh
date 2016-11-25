@@ -3,7 +3,7 @@
 . /home/tcj25/.virtualenvs/35/bin/activate
 
 task=$1
-log=../$task.log
+log=../slurm-pipeline.log
 fastq=../04-find-unmapped/$task-unmapped.fastq.gz
 out=$task.json.bz2
 

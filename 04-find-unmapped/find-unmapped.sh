@@ -3,12 +3,11 @@
 . /home/tcj25/.virtualenvs/35/bin/activate
 
 task=$1
+log=../slurm-pipeline.log
 out=$task-unmapped.fastq.gz
 
 bamPairs=../03-map/$task-paired.bam
 bamMerged=../03-map/$task-merged.bam
-
-log=../$task.log
 
 function unmapped()
 {

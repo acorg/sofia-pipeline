@@ -2,7 +2,7 @@
 
 task=$1
 
-log=../$task.log
+log=../slurm-pipeline.log
 
 echo "01-trim sbatch.sh running at `date`" >> $log
 echo "task is $task" >> $log

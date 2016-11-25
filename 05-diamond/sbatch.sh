@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 task=$1
-log=../$task.log
+log=../slurm-pipeline.log
 
 echo "05-diamond sbatch.sh running at `date`" >> $log
 echo "task is $task" >> $log
