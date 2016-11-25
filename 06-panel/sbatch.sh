@@ -3,10 +3,10 @@
 log=../sbatch.log
 
 echo "06-panel sbatch.sh running at `date`" >> $log
-echo "  dependencies are $SP_DEPENDENCY_ARG" >> $log
+echo "dependencies are $SP_DEPENDENCY_ARG" >> $log
 for task in "$@"
 do
-    echo "  task $task" >> $log
+    echo "task $task" >> $log
 done
 
 echo >> $log
