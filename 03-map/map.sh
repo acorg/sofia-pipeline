@@ -34,6 +34,13 @@ function get_genome()
     fi
 
     genome=$(egrep "^$sample " $sample_to_genome | awk '{print $2}')
+
+    if [ -z "$genome" ]
+    then
+        echo "  Could not find sample '$sample' in genome mapping file '$sample_to_genome'." >> $log
+        exit 1
+    fi
+    
     genomeDir=$HOME/scratch/genomes/$genome
 
     if [ ! -d $genomeDir ]
