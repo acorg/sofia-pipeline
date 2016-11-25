@@ -39,5 +39,4 @@ clean-3: clean-2
               06-panel/summary-virus \
               slurm-pipeline.log \
               slurm-pipeline.done \
-              *.log \
               status.json

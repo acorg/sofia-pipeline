@@ -1,3 +1,6 @@
+slurm-pipeline.log
+slurm-pipeline.done
+status.json
 *.fastq.gz
 */slurm-*.out
 01-trim/*.discarded.gz
