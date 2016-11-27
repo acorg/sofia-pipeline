@@ -12,14 +12,14 @@ log=../slurm-pipeline.log
 outputDir=out
 out=$outputDir/index.html
 
-echo "06-panel started at `date`" >> $log
+echo "05-panel started at `date`" >> $log
 
 json=
 fastq=
 for task in "$@"
 do
     echo "  task $task" >> $log
-    json="$json ../05-diamond/$task.json.bz2"
+    json="$json ../04-diamond/$task.json.bz2"
     fastq="$fastq ../04-find-unmapped/$task-unmapped.fastq.gz"
 done
 
@@ -76,5 +76,5 @@ else
     echo "  This is a simulation." >> $log
 fi
 
-echo "06-panel stopped at `date`" >> $log
+echo "05-panel stopped at `date`" >> $log
 echo >> $log

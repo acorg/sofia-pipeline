@@ -54,9 +54,9 @@ $ make run
 * `02-flash`: Merge paired reads, where possible.
 * `03-map`: Map reads to the human genome.
 * `04-find-unmapped`: Extract reads that did not map to the human genome.
-* `05-diamond`: Map the non-human reads to a viral protein database.
-* `06-panel`: Make a [dark matter](https://github.com/acorg/dark-matter/) panel of blue plots.
-* `07-stop`: Logging. Create `slurm-pipeline.done` in top-level dir.
+* `04-diamond`: Map the non-human reads to a viral protein database.
+* `05-panel`: Make a [dark matter](https://github.com/acorg/dark-matter/) panel of blue plots.
+* `06-stop`: Logging. Create `slurm-pipeline.done` in top-level dir.
 
 The scripts in `00-start` and `01-trim` assume they can find their
 input FASTQ files in `../../../../SAMPLE-NAME` where `SAMPLE-NAME` is
@@ -64,8 +64,8 @@ something like `141110-79` (as in the above directory hierarchy).
 
 ## Output
 
-The final step, `06-panel` leaves its output in `06-panel/out`. You can
-open `06-panel/out/index.html` in your browser.
+The final step, `05-panel` leaves its output in `06-panel/out`. You can
+open `05-panel/out/index.html` in your browser.
 
 You can also run
 
@@ -82,9 +82,9 @@ found in all sample files.
 Logging goes to two places when you run `make run` in a directory such as
 `pipelines/initial/140715-12`. 
 * Top-level output for the initial and final scripts and for the `collect`
-script in `06-panel` appears in `slurm-pipeline.log`.
+script in `05-panel` appears in `slurm-pipeline.log`.
 * Per-FASTA output for the scripts that treat just one FASTA file
-(`01-trim` to `05-diamond`) appears in a `.log` file whose name is
+(`01-trim` to `04-diamond`) appears in a `.log` file whose name is
 based on the FASTA files being processed.
 
 ### Cleaning up

@@ -24,29 +24,23 @@
             "script": "03-map/sbatch.sh"
         },
         {
-            "cwd": "04-find-unmapped",
+            "cwd": "04-diamond",
             "dependencies": ["map"],
-            "name": "unmapped",
-            "script": "04-find-unmapped/sbatch.sh"
-        },
-        {
-            "cwd": "05-diamond",
-            "dependencies": ["unmapped"],
             "name": "diamond",
-            "script": "05-diamond/sbatch.sh"
+            "script": "04-diamond/sbatch.sh"
         },
         {
             "collect": true,
-            "cwd": "06-panel",
+            "cwd": "05-panel",
             "dependencies": ["diamond"],
             "name": "panel",
-            "script": "06-panel/sbatch.sh"
+            "script": "05-panel/sbatch.sh"
         },
         {
-            "cwd": "07-stop",
+            "cwd": "06-stop",
             "dependencies": ["panel"],
             "name": "stop",
-            "script": "07-stop/sbatch.sh"
+            "script": "06-stop/sbatch.sh"
         }
     ]
 }

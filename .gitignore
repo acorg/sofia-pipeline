@@ -14,8 +14,8 @@ status.json
 03-map/*.bam
 04-find-unmapped/*.fastq.gz
 04-find-unmapped/*.out
-05-diamond/*.json.bz2
-05-diamond/*.out
-06-panel/out
-06-panel/summary-proteins
-06-panel/summary-viruses
+04-diamond/*.json.bz2
+04-diamond/*.out
+05-panel/out
+05-panel/summary-proteins
+05-panel/summary-viruses

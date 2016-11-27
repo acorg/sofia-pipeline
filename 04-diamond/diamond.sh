@@ -7,7 +7,7 @@ log=../slurm-pipeline.log
 fastq=../04-find-unmapped/$task-unmapped.fastq.gz
 out=$task.json.bz2
 
-echo "05-diamond on task $task started at `date`" >> $log
+echo "04-diamond on task $task started at `date`" >> $log
 echo "  fastq file is $fastq" >> $log
 
 
@@ -57,5 +57,5 @@ else
     echo "  This is a simulation." >> $log
 fi
 
-echo "05-diamond on task $task stopped at `date`" >> $log
+echo "04-diamond on task $task stopped at `date`" >> $log
 echo >> $log

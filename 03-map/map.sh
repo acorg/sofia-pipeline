@@ -9,6 +9,7 @@ fastq1=../02-flash/${task}_R1_001-flash.fastq.gz
 fastq2=../02-flash/${task}_R2_001-flash.fastq.gz
 fastqMerged=../02-flash/${task}-merged-flash.fastq.gz
 
+out=$task-unmapped.fastq.gz
 outPairs=$task-paired.bam
 outMerged=$task-merged.bam
 
@@ -22,8 +23,28 @@ fi
 bamtmp=$tmp/terry-$task.bam
 sam=$tmp/terry-$task.sam
 
+function skip()
+{
+    # Copy our input FASTQ to our output (almost) unchanged. We need put /1
+    # at the end of the ids in $fastq1 and /2 at the end of $fastq2,
+    # otherwise we'll end up with duplicate read ids from the paired reads.
+
+    # In the following, filter-fasta.py is used to make sure sequences and
+    # quality strings occupy just one line, so that awk can append /1 or /2
+    # to the FASTQ id lines (matching those lines via NR % 4 == 1).
+    (
+        zcat $fastq1 | filter-fasta.py | awk 'NR % 4 == 1 {printf "%s/1\n", $0} NR % 4 != 1'
+        zcat $fastq2 | filter-fasta.py | awk 'NR % 4 == 1 {printf "%s/2\n", $0} NR % 4 != 1'
+    ) | gzip > $out
+
+    cat $fastqMerged >> $out
+}
+
 function get_genome()
 {
+    # Look for the sample id in ../../../../sample-to-genome and see if it
+    # has a genome that we should map to.
+
     sample=$(basename $(dirname $(/bin/pwd)))
     sample_to_genome='../../../../sample-to-genome'
 
@@ -60,6 +81,18 @@ function get_genome()
     fi
 
     echo $genomeForBWA
+}
+
+function find_unmapped()
+{
+    echo "  print-unmapped-sam.py started on $bamPairs at `date`" >> $log
+    print-unmapped-sam.py $outPairs | gzip > $out
+    echo "  print-unmapped-sam.py stopped on $bamPairs at `date`" >> $log
+
+    # Note we concatenate onto the end of the previous gzip output.
+    echo "  print-unmapped-sam.py started on $bamMerged at `date`" >> $log
+    print-unmapped-sam.py $outMerged | gzip >> $out
+    echo "  print-unmapped-sam.py stopped on $bamMerged at `date`" >> $log
 }
 
 function map()
@@ -107,21 +140,27 @@ echo "  fastq1 is $fastq1" >> $log
 echo "  fastq2 is $fastq2" >> $log
 echo "  merged is $fastqMerged" >> $log
 
-if [ $SP_SIMULATE = "0" ]
+if [ $SP_SKIP = "1" ]
+then
+    echo "  Mapping is being skipped on this run." >> $log
+    skip
+elif [ $SP_SIMULATE = "0" ]
 then
     echo "  This is not a simulation." >> $log
-    if [ -f $outPairs -a -f $outMerged ]
+    if [ -f $out ]
     then
         if [ $SP_FORCE = "1" ]
         then
-            echo "  Pre-existing output files $outPairs and $outMerged exist, but --force was used. Overwriting." >> $log
+            echo "  Pre-existing output file $out exists, but --force was used. Overwriting." >> $log
             map
+            find_unmapped
         else
-            echo "  Will not overwrite pre-existing output files $outPairs and $outMerged. Use --force to make me." >> $log
+            echo "  Will not overwrite pre-existing output file $out. Use --force to make me." >> $log
         fi
     else
-        echo "  Pre-existing output files $outPairs and $outMerged do not both exist. Mapping." >> $log
+        echo "  Pre-existing output file $out does not exist. Mapping." >> $log
         map
+        find_unmapped
     fi
 else
     echo "  This is a simulation." >> $log
