@@ -4,7 +4,7 @@
 
 task=$1
 log=../slurm-pipeline.log
-fastq=../04-find-unmapped/$task-unmapped.fastq.gz
+fastq=../03-map/$task-unmapped.fastq.gz
 out=$task.json.bz2
 
 echo "04-diamond on task $task started at `date`" >> $log
