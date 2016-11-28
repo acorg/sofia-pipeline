@@ -23,7 +23,7 @@ do
     fastq="$fastq ../04-find-unmapped/$task-unmapped.fastq.gz"
 done
 
-dbFASTAFile=$HOME/scratch/root/share/ncbi/diamond-dbs/viral-protein-OKIAV-ECH.fasta
+dbFASTAFile=$HOME/scratch/root/share/ncbi/diamond-dbs/viral-protein-OKIAV-ECH_renamed.fasta
 
 if [ ! -f $dbfile ]
 then

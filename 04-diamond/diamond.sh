@@ -10,8 +10,7 @@ out=$task.json.bz2
 echo "04-diamond on task $task started at `date`" >> $log
 echo "  fastq file is $fastq" >> $log
 
-
-dbfile=$HOME/scratch/root/share/ncbi/diamond-dbs/viral-protein-OKIAV-ECH.dmnd
+dbfile=$HOME/scratch/root/share/ncbi/diamond-dbs/viral-protein-OKIAV-ECH_renamed.dmnd
 
 if [ ! -f $dbfile ]
 then
