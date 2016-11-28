@@ -33,8 +33,8 @@ function skip()
     # quality strings occupy just one line, so that awk can append /1 or /2
     # to the FASTQ id lines (matching those lines via NR % 4 == 1).
     (
-        zcat $fastq1 | filter-fasta.py | awk 'NR % 4 == 1 {printf "%s/1\n", $0} NR % 4 != 1'
-        zcat $fastq2 | filter-fasta.py | awk 'NR % 4 == 1 {printf "%s/2\n", $0} NR % 4 != 1'
+        zcat $fastq1 | filter-fasta.py --readClass fastq | awk '{if (NR % 2 == 1){printf "%s/1\n", $0} else {print}}'
+        zcat $fastq2 | filter-fasta.py --readClass fastq | awk '{if (NR % 2 == 1){printf "%s/1\n", $0} else {print}}'
     ) | gzip > $out
 
     cat $fastqMerged >> $out
