@@ -20,7 +20,7 @@ for task in "$@"
 do
     echo "  task $task" >> $log
     json="$json ../04-diamond/$task.json.bz2"
-    fastq="$fastq ../04-find-unmapped/$task-unmapped.fastq.gz"
+    fastq="$fastq ../03-map/$task-unmapped.fastq.gz"
 done
 
 dbFASTAFile=$HOME/scratch/root/share/ncbi/diamond-dbs/viral-protein-OKIAV-ECH_renamed.fasta
