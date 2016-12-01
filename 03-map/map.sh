@@ -140,14 +140,16 @@ echo "  fastq1 is $fastq1" >> $log
 echo "  fastq2 is $fastq2" >> $log
 echo "  merged is $fastqMerged" >> $log
 
-if [ $SP_SKIP = "1" ]
+if [ $SP_SIMULATE = "1" ]
 then
-    echo "  Mapping is being skipped on this run." >> $log
-    skip
-elif [ $SP_SIMULATE = "0" ]
-then
+    echo "  This is a simulation." >> $log
+else
     echo "  This is not a simulation." >> $log
-    if [ -f $out ]
+    if [ $SP_SKIP = "1" ]
+    then
+        echo "  Mapping is being skipped on this run." >> $log
+        skip
+    elif [ -f $out ]
     then
         if [ $SP_FORCE = "1" ]
         then
@@ -162,8 +164,6 @@ then
         map
         find_unmapped
     fi
-else
-    echo "  This is a simulation." >> $log
 fi
 
 echo "03-map on task $task stopped at `date`" >> $log
